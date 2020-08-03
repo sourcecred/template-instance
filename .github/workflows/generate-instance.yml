@@ -1,0 +1,50 @@
+name: Generate Cred Instance
+on:
+  # Trigger on merging to master.
+  push:
+    branches:
+      - master
+  # As well as every 6 hours.
+  schedule:
+    - cron: 0 */6 * * *
+
+jobs:
+  GenerateCredInstance:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          persist-credentials: false # Required to make github pages deployment work correctly
+
+      - name: Cache Data # Cache SourceCred Data, invalidating if any of the config changes or the SC version is updated
+        uses: actions/cache@v2
+        with:
+          path: '**/cache'
+          key: SC-${{ runner.os }}-${{ hashFiles('**/config.json', '**/sourcecred.json', '**/yarn.lock') }}
+
+      - name: Install Packages 🔧
+        run: yarn --frozen-lockfile
+
+      - name: Load Data into Graph 🔌
+        run: |
+          yarn load
+          yarn graph
+        env:
+          SOURCECRED_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCECRED_DISCORD_TOKEN: ${{ secrets.SOURCECRED_DISCORD_TOKEN }}
+
+      - name: Compute Cred 🧮
+        run: yarn score
+
+      - name: Generate Frontend 🏗
+        run: |
+          yarn site
+          rm -rf ./site/{output,data,config,sourcecred.json}
+          cp -r ./{output,data,config,sourcecred.json} ./site/
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@3.5.7
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: site

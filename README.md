@@ -34,17 +34,56 @@ Generated Data:
 - `site/` which stores the compiled SourceCred frontend, which can display data
   stored in the instance.
 
-The instance gets updated via the following commands:
-- `sourcecred load [...plugins]` loads the cache. By default, it loads all
-  plugins, or it can load only specific plugins if requested.
-- `sourcecred graph [...plugins]` regenerates plugin graphs from the cache;
-  these graphs get saved in `output/`
-- `sourcecred score` computes Cred scores, combining data from all the chosen
-  plugins
-- `sourcecred site` re-compiles the SourceCred frontend
-- `sourcecred serve` runs the SourceCred frontend locally
-- `sourcecred grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`
 
+# Setup and Usage
+
+Using this instance as a starting point, you can update the config to include
+just the plugins you want, pointing at the data you care about. We recommend setting up
+your instance locally first and make sure its working before pushing your changes
+to master and using the Github Action.
+
+Get [Yarn] and then run `yarn` to install SourceCred and dependencies.
+
+Update the configuration files according to the plugin guides below.
+
+Then, run the following commands to update the instance:
+
+- `yarn load [...plugins]` loads the cache. By default, it loads all
+  plugins, or it can load only specific plugins if requested.
+- `yarn graph  [...plugins]` regenerates plugin graphs from the cache;
+  these graphs get saved in `output/`
+- `yarn score` computes Cred scores, combining data from all the chosen
+  plugins
+- `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`
+
+**Generate the frontend:**
+
+- `yarn site`
+
+**Run the frontend:**
+
+- `yarn admin`
+
+
+If you want to clear the cached data, you can do so via:
+
+- `yarn clean` 
+
+Running `yarn clean` is a good idea if any plugins fail to load.
+
+If you want to restart from a clean slate and remove all the generated graphs, you can do so via:
+
+- `yarn clean-all` 
+
+Run `yarn clean-all` if the `yarn graph` command fails due to a change in the config or breaking changes in a new version of SourceCred.
+**Warning**: If you don't have credentials for every plugin, you might not be able to regenerate parts of the graph.
+
+### Publishing on GitHub pages
+
+Once you've got the instance configured to your satisfaction (see instructions on plugins below),
+commit and push your changes to master (or make a pull request). The Github Action will then generate the frontend
+and deploy it to GitHub Pages. To enable GitHub Pages for your instance, check out [this guide](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+Make sure you select `gh-pages` as the branch to publish from. 
 
 # Supported Plugins
 
@@ -138,53 +177,7 @@ emoji a weight of 10.
 To deactivate a plugin, just remove it from the `bundledPlugins` array in the `sourcecred.json` file.
 You can also remove its `config/plugins/OWNER/NAME` directory for good measure.
 
-# Running Locally
 
-Using this instance as a starting point, you can update the config to include
-just the plugins you want, pointing at the data you care about. We recommend setting up
-your instance locally first and make sure its working before pushing your changes
-to master and using the Github Action.
-
-Get [Yarn] and then run `yarn` to install SourceCred and dependencies.
-
-Then, run the following commands to update the instance:
-
-- `yarn load`
-- `yarn graph`
-- `yarn score`
-
-Generate the frontend:
-
-- `yarn site`
-
-Run the frontend:
-
-- `yarn admin`
-
-If you want to load data for a specific plugin without having to reload everything , you can do so via:
-
-- `yarn load sourcecred/discourse` 
-
-If you want to clear the cached data, you can do so via:
-
-- `yarn clean` 
-
-Running `yarn clean` is a good idea if any plugins fail to load.
-
-If you want to restart from a clean slate and remove all the generated graphs, you can do so via:
-
-- `yarn clean-all` 
-
-Run `yarn clean-all` if the `yarn graph` command fails due to a change in the config or breaking changes in a new version of SourceCred.
-**Warning**: If you don't have credentials for every plugin, you might not be able to regenerate parts of the graph.
-
-
-### Publishing on GitHub pages
-
-Once you've got the instance configured to your satisfaction (see instructions on plugins below),
-push your changes to master (or make a pull request). The Github Action will then generate the frontend
-and deploy it to GitHub Pages. To enable GitHub Pages for your instance, check out [this guide](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
-Make sure you select `gh-pages` as the branch to publish from. 
 
 [Yarn]: https://classic.yarnpkg.com/
 

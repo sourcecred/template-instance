@@ -7,7 +7,7 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "sourcecred": "0.7.0-beta-7"
+    "sourcecred": "0.7.0-beta-8"
   },
   "scripts": {
     "clean": "rimraf cache site",
@@ -16,7 +16,7 @@
     "graph": "sourcecred graph",
     "score": "sourcecred score",
     "site": "sourcecred site",
-    "serve": "sourcecred admin",
+    "serve": "sourcecred serve",
     "grain": "sourcecred grain"
   },
   "devDependencies": {

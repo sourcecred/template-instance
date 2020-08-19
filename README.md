@@ -132,12 +132,12 @@ The bot will have a token, which you should also save.
 Once you've made the bot, you need to invite it to your server.
 You'll need to do so by constructing a URL like:
 
-`https://discordapp.com/api/oauth2/authorize?client_id=${CLIENT_ID}&scope=bot&permissions=66560`
+`https://discordapp.com/api/oauth2/authorize?client_id=${CLIENT_ID}&scope=bot&permissions=8
 
 Where `${CLIENT_ID}` should be replaced with your application's client id from
 above. For example, if your application's client id is 1234, use the following url:
 
-`https://discordapp.com/api/oauth2/authorize?client_id=1234&scope=bot&permissions=66560`
+`https://discordapp.com/api/oauth2/authorize?client_id=1234&scope=bot&permissions=8`
 
 Open that url in a browser where you are logged into Discord, and you'll see a
 menu letting you add the bot to servers you have access to. Add it to the

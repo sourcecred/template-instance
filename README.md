@@ -50,8 +50,8 @@ Then, run the following commands to update the instance:
 
 - `yarn load [...plugins]` loads the cache. By default, it loads all
   plugins, or it can load only specific plugins if requested.
-- `yarn graph  [...plugins]` regenerates plugin graphs from the cache;
-  these graphs get saved in `output/`
+- `yarn graph` regenerates plugin graphs from the cache;
+  these graphs get saved in `output/`.
 - `yarn score` computes Cred scores, combining data from all the chosen
   plugins
 - `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`
@@ -177,7 +177,23 @@ emoji a weight of 10.
 To deactivate a plugin, just remove it from the `bundledPlugins` array in the `sourcecred.json` file.
 You can also remove its `config/plugins/OWNER/NAME` directory for good measure.
 
+### Distributing Grain
 
+This repo contains a GitHub action for distributing grain. It will run every Sunday and create a Pull Request
+with the ledger updated with the new grain balances based on the users cred scores. The amount of grain to get distributed
+every week can be defined in the `config/grain.json` file. There are two different policies that can be used to control
+how the grain gets distributed: 
+- `immediatePerWeek` splits the grain evenly based on everyone's Cred in the last week only.
+- `balancedPerWeek` distributes the grain consistently based on total lifetime cred scores. i.e. it balances
+the distribution of grain with the distribution of total historical cred.
+
+The balanced policy allows SourceCred to reward people retro-actively. e.g. If someone has been historically "overpaid"
+with grain relative to their cred scores, that people will receive less grain in the balanced distribution while people
+who have been "underpaid" relative to their cred will receive more grain.
+
+In SourceCred, we distribute 15000 grain / week with the "balanced" policy and 5000 grain / week with the "immediate"
+policy. The values you use for your community depend on whether you want to optimize for more immediate short term
+action, or for long term incentive alignment, but we recommend using a blend of both.
 
 [Yarn]: https://classic.yarnpkg.com/
 

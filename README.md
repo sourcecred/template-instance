@@ -109,68 +109,8 @@ keys or permissions. You just need to set the server url in `config/plugins/sour
 
 ## Discord
 
-The Discord plugin loads Discord servers, and mints cred on Discord reactions.
-
-To get this setup, you'll first want to enable Developer Mode in your Discord
-client, under User Settings -> Appearance -> Advanced -> Developer Mode. This
-will give you the ability to right-click on items and copy their Discord ids.
-
-Then, right click on the server you want to track, and copy its ID. Modify the
-`config/plugins/sourcecred/discord/config.json` file to have the correct
-guildId.
-
-Next, you'll need to create a Discord application and add it to the server. (This requires admin permissions on that server.)
-
-The first step is to create an application, which you can do here:
-https://discordapp.com/developers/applications
-
-You'll get an application client ID, which you'll need in a future step.
-
-Next, give that application a Bot by clicking on the "Bot" menu option on the left, and then adding a bot.
-The bot will have a token, which you should also save.
-
-Once you've made the bot, you need to invite it to your server.
-You'll need to do so by constructing a URL like:
-
-`https://discordapp.com/api/oauth2/authorize?client_id=${CLIENT_ID}&scope=bot&permissions=8
-
-Where `${CLIENT_ID}` should be replaced with your application's client id from
-above. For example, if your application's client id is 1234, use the following url:
-
-`https://discordapp.com/api/oauth2/authorize?client_id=1234&scope=bot&permissions=8`
-
-Open that url in a browser where you are logged into Discord, and you'll see a
-menu letting you add the bot to servers you have access to. Add it to the
-server in question, giving it permission to read messages and read message
-history.
-
-You need to add this token into GitHub for the Action to work correctly.
-[Checkout this guide](https://docs.github.com/en/actions/configuring-and-managing-workflows/creating-and-storing-encrypted-secrets#creating-encrypted-secrets-for-a-repository) 
-to see how you can add the token as a Secret that can be read by the Action. Set the name to `SOURCECRED_DISCORD_TOKEN`;
-
-If you are running SourceCred locally, set the bot token to the environment variable `$SOURCECRED_DISCORD_TOKEN`.
-
-You can now load your Discord server. Hooray!
-
-As an added bit of configuration, you can set custom reactionWeights in the
-`reactionWeights` section of the Discord config. These allow you to change how
-much Cred is minted per reaction.
-
-If you want to change the weight for a default reaction, just put the
-reaction's literal emoji in the config.json, as in `"💜": 5` to give the purple
-heart a weight of 5.
-
-If you want to set a custom weight for a custom emoji, you'll need to get the
-custom emoji's server id. You can do this by right-clicking on a custom emoji
-in the server, and clicking "copy link". This will give you a link to the
-emoji's image on Discord's servers, for example:
-
-https://cdn.discordapp.com/emojis/678399364418502669.png?v=1
-
-The numeric substring is the emoji's ID. You can then specify it in the
-reaction weights file as `$EMOJI_NAME:$EMOJI_ID`, as in:
-`"sourcecred:678399364418502669": 10` to give some server's custom SourceCred
-emoji a weight of 10.
+The Discord plugin loads Discord servers, and mints Cred on Discord reactions.
+For instructions on configuring the Discord plugin, see the [Discord plugin page](https://sourcecred.io/docs/beta/plugins/discord/#configuration) in the SourceCred documentation. 
 
 # Removing plugins
 

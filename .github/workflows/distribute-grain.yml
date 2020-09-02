@@ -1,0 +1,64 @@
+name: Distribute Grain
+on:
+  # A new Cred interval every Sunday. We'll distribute Grain 5 minutes
+  # after the new interval
+  schedule:
+    - cron: 5 0 * * 0 # 00:05 UTC, 16:05 PST
+  push:
+    branches:
+      # allows us to test this workflow, or manually generate distributions
+      # PRSs created from grain-trigger-* branches are targeted
+      # on their immediate base branches, as opposed to master
+      - "grain-trigger-*"
+
+jobs:
+  distribute-grain:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Install Packages 🔧
+        run: |
+          yarn --frozen-lockfile
+
+      - name: Load Data into Graph 🔌
+        run: |
+          yarn load
+          yarn graph
+        env:
+          SOURCECRED_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCECRED_DISCORD_TOKEN: ${{ secrets.SOURCECRED_DISCORD_TOKEN }}
+
+      - name: Compute Cred 🧮
+        run: yarn score
+
+      - name: Distribute Grain 💸
+        run: yarn grain > grain_output.txt
+
+      - name: Set environment variables
+        id: pr_details
+        run: |
+          echo ::set-env name=PULL_REQUEST_TITLE::"Scheduled grain distribution for week ending $(date +"%B %dth, %Y")"
+          description="This PR was auto-generated on $(date +%d-%m-%Y) \
+            to add the latest grain distribution to our instance.
+
+            $(cat grain_output.txt)"
+          description="${description//'%'/'%25'}"
+          description="${description//$'\n'/'%0A'}"
+          description="${description//$'\r'/'%0D'}"
+          echo "::set-output name=pr_body::$description"
+          rm grain_output.txt
+
+      - name: Create commit and PR for ledger changes
+        id: pr
+        uses: peter-evans/create-pull-request@v3
+        with:
+          branch: generated-ledger
+          branch-suffix: timestamp
+          committer: credbot <credbot@users.noreply.github.com>
+          # author appears to be overridden when the default github action
+          # token is used for checkout
+          author: credbot <credbot@users.noreply.github.com>
+          commit-message: update calculated ledger
+          title: ${{ env.PULL_REQUEST_TITLE }}
+          body: ${{ steps.pr_details.outputs.pr_body }}

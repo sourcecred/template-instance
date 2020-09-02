@@ -18,6 +18,8 @@ All output or site data gets stored in the `gh-pages` branch by the Github Actio
 Configuration files:
 - `config/grain.json` specifies how much Grain to distribute every week. The `maxSimultaneousDistributions` parameter 
 determines how many weeks of "back-distributions" to generate if the command hasn't been run in a while (or ever).
+- `config/currencyDetails.json` By default, SourceCred uses "Grain" as the name for the currency it distributes to participants.
+If you would like to change it to something custom for your community, you can do so by editing this file.
 - `config/plugins/$PLUGIN_OWNER/$PLUGIN_NAME` stores plugin-specific data. Each
   plugin has its own directory. See the plugin section below to learn how to configure them.
 
@@ -62,7 +64,7 @@ Then, run the following commands to update the instance:
 
 **Run the frontend:**
 
-- `yarn admin`
+- `yarn serve`
 
 
 If you want to clear the cached data, you can do so via:
@@ -83,7 +85,9 @@ Run `yarn clean-all` if the `yarn graph` command fails due to a change in the co
 Once you've got the instance configured to your satisfaction (see instructions on plugins below),
 commit and push your changes to master (or make a pull request). The Github Action will then generate the frontend
 and deploy it to GitHub Pages. To enable GitHub Pages for your instance, check out [this guide](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
-Make sure you select `gh-pages` as the branch to publish from. 
+Make sure you select `gh-pages` as the branch to publish from.
+
+
 
 # Supported Plugins
 

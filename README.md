@@ -62,7 +62,7 @@ Then, run the following commands to update the instance:
 
 **Run the frontend:**
 
-- `yarn admin`
+- `yarn serve`
 
 
 If you want to clear the cached data, you can do so via:

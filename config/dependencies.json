@@ -1,0 +1,7 @@
+[
+    {
+        "autoActivateOnIdentityCreation": true,
+        "name": "SourceCred",
+        "startWeight": 0.05
+    }
+]

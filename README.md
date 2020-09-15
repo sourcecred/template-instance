@@ -40,11 +40,19 @@ Generated Data:
 # Setup and Usage
 
 Using this instance as a starting point, you can update the config to include
-just the plugins you want, pointing at the data you care about. We recommend setting up
+the plugins you want, pointing at the data you care about. We recommend setting up
 your instance locally first and make sure its working before pushing your changes
 to master and using the Github Action.
 
 Get [Yarn] and then run `yarn` to install SourceCred and dependencies.
+
+Enable the plugins you want to use by updating the `sourcecred.json` file. e.g. 
+to enable all the plugins:
+```json
+{
+  "bundledPlugins": ["sourcecred/discourse", "sourcecred/discord", "sourcecred/github"]
+}
+```
 
 Update the configuration files according to the plugin guides below.
 

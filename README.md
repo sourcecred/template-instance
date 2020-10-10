@@ -1,4 +1,5 @@
-# SourceCred Template Instance
+# Giveth Cred (forked from SourceCred Template Instance)
+![Generate Cred Instance](https://github.com/Giveth/sourcecred-instance/workflows/Generate%20Cred%20Instance/badge.svg?branch=master)
 
 This repository contains a template for running a SourceCred instance.
 

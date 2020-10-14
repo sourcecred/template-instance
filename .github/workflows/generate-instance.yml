@@ -4,9 +4,9 @@ on:
   push:
     branches:
       - master
-  # As well as every 6 hours.
+  # As well as every 24 hours (at 0:00 UTC).
   schedule:
-    - cron: 0 */6 * * *
+    - cron: 0 0 * * *
 
 jobs:
   GenerateCredInstance:

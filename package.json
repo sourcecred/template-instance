@@ -13,10 +13,7 @@
     "clean": "rimraf cache site",
     "clean-all": "yarn clean && rimraf output",
     "load": "dotenv sourcecred load",
-    "graph": "dotenv sourcecred graph",
-    "score": "sourcecred score",
-    "site": "sourcecred site",
-    "serve": "sourcecred serve",
+    "start": "dotenv sourcecred go --no-load && sourcecred site && sourcecred serve",
     "grain": "sourcecred grain"
   },
   "devDependencies": {

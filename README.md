@@ -44,9 +44,9 @@ the plugins you want, pointing at the data you care about. We recommend setting 
 your instance locally first and make sure its working before pushing your changes
 to master and using the Github Action.
 
-Get [Yarn] and then run `yarn` to install SourceCred and dependencies.
+1. Get [Yarn] and then run `yarn` to install SourceCred and dependencies.
 
-Enable the plugins you want to use by updating the `sourcecred.json` file. e.g. 
+2. Enable the plugins you want to use by updating the `sourcecred.json` file. e.g. 
 to enable all the plugins:
 ```json
 {
@@ -54,16 +54,20 @@ to enable all the plugins:
 }
 ```
 
-Update the configuration files according to the plugin guides below.
+3. If you are using the GitHub or Discord plugin, copy the `.env.example` file to a `.env` file:
+```shell script
+cp .env.example .env
+```
 
-Then, run the following commands to update the instance:
+4. Follow the steps in the [plugin guides below](#supported-plugins) to setup the config files and generate access tokens
+for each plugin and then paste them into the `.env` file after the `=` sign.
 
-- `yarn load [...plugins]` loads the cache. By default, it loads all
-  plugins, or it can load only specific plugins if requested.
-- `yarn graph` regenerates plugin graphs from the cache;
-  these graphs get saved in `output/`.
-- `yarn score` computes Cred scores, combining data from all the chosen
-  plugins
+
+5. Run the following commands to update the instance:
+
+- `yarn load` loads the data from each plugin into the cache
+- `yarn graph` regenerates plugin graphs from the cache; these graphs get saved in `output/`.
+- `yarn score` computes Cred scores, combining data from all the chosen plugins
 - `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`
 
 **Generate the frontend:**
@@ -95,8 +99,6 @@ commit and push your changes to master (or make a pull request). The Github Acti
 and deploy it to GitHub Pages. To enable GitHub Pages for your instance, check out [this guide](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
 Make sure you select `gh-pages` as the branch to publish from.
 
-
-
 # Supported Plugins
 
 ## GitHub
@@ -107,9 +109,9 @@ You can specify the repositories to load in
 `config/plugins/sourcecred/github/config.json`.
 
 The Github Action automatically has its own GITHUB_TOKEN, but if you need to load data from the 
-GitHub plugin locally, you must have a GitHub API key in your environment as
-`$SOURCECRED_GITHUB_TOKEN`. The key should be read-only without any special
-permissions (unless you are loading a private GitHub repository, in which case
+GitHub plugin locally, you must have a GitHub API key in your `.env` file as
+`SOURCECRED_GITHUB_TOKEN=<token>` (copy the `.env.example` file for reference). The key should be read-only without any special
+scopes or permissions (unless you are loading a private GitHub repository, in which case
 the key needs access to your private repositories).
 
 You can generate a GitHub API key [here](https://github.com/settings/tokens).
@@ -121,8 +123,13 @@ keys or permissions. You just need to set the server url in `config/plugins/sour
 
 ## Discord
 
-The Discord plugin loads Discord servers, and mints Cred on Discord reactions.
-For instructions on configuring the Discord plugin, see the [Discord plugin page](https://sourcecred.io/docs/beta/plugins/discord/#configuration) in the SourceCred documentation. 
+The Discord plugin loads Discord servers, and mints Cred on Discord reactions. In order for SourceCred to
+access your Discord server, you need to generate a "bot token" and paste it in the `.env` file as
+`SOURCECRED_DISCORD_TOKEN=<token>` (copy the `.env.example` file for reference). You will also need to add it
+to your GitHub Action secrets. 
+
+The full instructions for setting up the Discord plugin can be found in the [Discord plugin page](https://sourcecred.io/docs/beta/plugins/discord/#configuration)
+ in the SourceCred documentation. 
 
 # Removing plugins
 

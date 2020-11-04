@@ -63,34 +63,49 @@ cp .env.example .env
 for each plugin and then paste them into the `.env` file after the `=` sign.
 
 
-5. Run the following commands to update the instance:
+5. Use the following commands to run your instance locally:
 
-- `yarn load` loads the data from each plugin into the cache
-- `yarn graph` regenerates plugin graphs from the cache; these graphs get saved in `output/`.
-- `yarn score` computes Cred scores, combining data from all the chosen plugins
-- `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`
+**Load Data**
 
-**Generate the frontend:**
+- `yarn load` loads the data from each plugin into the cache. Run this anytime you want to re-load the data from 
+your plugins.
 
-- `yarn site`
+**Run SourceCred**
+- `yarn start` creates the graph, computes cred scores and runs the front end interface which you can access at `localhost:6006`
+in your browser.
 
-**Run the frontend:**
-
-- `yarn serve`
+**Clear Cache**
 
 
-If you want to clear the cached data, you can do so via:
-
-- `yarn clean` 
-
-Running `yarn clean` is a good idea if any plugins fail to load.
+- `yarn clean` will clear any cached data that was loaded by the plugins. You can run this if any plugins fail to load. Run `yarn load` after this to re-load the data.
 
 If you want to restart from a clean slate and remove all the generated graphs, you can do so via:
-
 - `yarn clean-all` 
 
-Run `yarn clean-all` if the `yarn graph` command fails due to a change in the config or breaking changes in a new version of SourceCred.
-**Warning**: If you don't have credentials for every plugin, you might not be able to regenerate parts of the graph.
+Run `yarn clean-all` if the `yarn start` command fails due to a change in the config or breaking changes in a new version of SourceCred.
+
+### Distributing Grain
+- `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`. 
+
+This repo also contains a GitHub action for automatically distributing grain. It will run every Sunday and create a Pull Request
+with the ledger updated with the new grain balances based on the users cred scores. The amount of grain to get distributed
+every week can be defined in the `config/grain.json` file. There are two different policies that can be used to control
+how the grain gets distributed: 
+- `immediatePerWeek` splits the grain evenly based on everyone's Cred in the last week only.
+- `balancedPerWeek` distributes the grain consistently based on total lifetime cred scores. i.e. it balances
+the distribution of grain with the distribution of total historical cred.
+
+The balanced policy allows SourceCred to reward people retro-actively. e.g. If someone has been historically "overpaid"
+with grain relative to their cred scores, that people will receive less grain in the balanced distribution while people
+who have been "underpaid" relative to their cred will receive more grain.
+
+In SourceCred, we distribute 15000 grain / week with the "balanced" policy and 5000 grain / week with the "immediate"
+policy. The values you use for your community depend on whether you want to optimize for more immediate short term
+action, or for long term incentive alignment, but we recommend using a blend of both.
+
+### Low-level CLI
+If you want to go deeper, you can access lower-level commands in the sourcecred CLI in the form of: `yarn sourcecred <command>`. 
+For a list of what's available, and what each command does, run `yarn sourcecred help`.
 
 ### Publishing on GitHub pages
 
@@ -136,23 +151,6 @@ The full instructions for setting up the Discord plugin can be found in the [Dis
 To deactivate a plugin, just remove it from the `bundledPlugins` array in the `sourcecred.json` file.
 You can also remove its `config/plugins/OWNER/NAME` directory for good measure.
 
-### Distributing Grain
 
-This repo contains a GitHub action for distributing grain. It will run every Sunday and create a Pull Request
-with the ledger updated with the new grain balances based on the users cred scores. The amount of grain to get distributed
-every week can be defined in the `config/grain.json` file. There are two different policies that can be used to control
-how the grain gets distributed: 
-- `immediatePerWeek` splits the grain evenly based on everyone's Cred in the last week only.
-- `balancedPerWeek` distributes the grain consistently based on total lifetime cred scores. i.e. it balances
-the distribution of grain with the distribution of total historical cred.
-
-The balanced policy allows SourceCred to reward people retro-actively. e.g. If someone has been historically "overpaid"
-with grain relative to their cred scores, that people will receive less grain in the balanced distribution while people
-who have been "underpaid" relative to their cred will receive more grain.
-
-In SourceCred, we distribute 15000 grain / week with the "balanced" policy and 5000 grain / week with the "immediate"
-policy. The values you use for your community depend on whether you want to optimize for more immediate short term
-action, or for long term incentive alignment, but we recommend using a blend of both.
 
 [Yarn]: https://classic.yarnpkg.com/
-

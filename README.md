@@ -103,6 +103,10 @@ In SourceCred, we distribute 15000 grain / week with the "balanced" policy and 5
 policy. The values you use for your community depend on whether you want to optimize for more immediate short term
 action, or for long term incentive alignment, but we recommend using a blend of both.
 
+### Low-level CLI
+If you want to go deeper, you can access lower-level commands in the sourcecred CLI in the form of: `yarn sourcecred <command>`. 
+For a list of what's available, and what each command does, run `yarn sourcecred help`.
+
 ### Publishing on GitHub pages
 
 Once you've got the instance configured to your satisfaction (see instructions on plugins below),
@@ -150,4 +154,3 @@ You can also remove its `config/plugins/OWNER/NAME` directory for good measure.
 
 
 [Yarn]: https://classic.yarnpkg.com/
-

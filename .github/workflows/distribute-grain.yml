@@ -24,13 +24,12 @@ jobs:
       - name: Load Data into Graph 🔌
         run: |
           yarn load
-          yarn graph
         env:
           SOURCECRED_GITHUB_TOKEN: ${{ secrets.PERSONAL_TOKEN }}
           SOURCECRED_DISCORD_TOKEN: ${{ secrets.SOURCECRED_DISCORD_TOKEN }}
 
       - name: Compute Cred 🧮
-        run: yarn score
+        run: yarn start
 
       - name: Distribute Grain 💸
         run: yarn grain > grain_output.txt

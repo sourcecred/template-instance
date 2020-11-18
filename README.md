@@ -71,8 +71,11 @@ for each plugin and then paste them into the `.env` file after the `=` sign.
 your plugins.
 
 **Run SourceCred**
-- `yarn start` creates the graph, computes cred scores and runs the front end interface which you can access at `localhost:6006`
+- `yarn start` creates the cred graph, computes cred scores and runs the front end interface which you can access at `localhost:6006`
 in your browser.
+
+NOTE: this command will not load any new data from Discord / GitHub / Discourse, etc. If you want to re-load
+all the latest user activity, run `yarn load` again.
 
 **Clear Cache**
 

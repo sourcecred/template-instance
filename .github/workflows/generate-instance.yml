@@ -25,25 +25,20 @@ jobs:
       - name: Install Packages 🔧
         run: yarn --frozen-lockfile
 
-      - name: Load Data into Graph 🔌
-        run: |
-          yarn load
-          yarn graph
+      - name: Load Data and Compute Cred 🧮
+        run: yarn sourcecred go
         env:
           SOURCECRED_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SOURCECRED_DISCORD_TOKEN: ${{ secrets.SOURCECRED_DISCORD_TOKEN }}
 
-      - name: Compute Cred 🧮
-        run: yarn score
-
       - name: Generate Frontend 🏗
         run: |
-          yarn site
+          yarn sourcecred site
           rm -rf ./site/{output,data,config,sourcecred.json}
           cp -r ./{output,data,config,sourcecred.json} ./site/
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@3.5.7
+        uses: JamesIves/github-pages-deploy-action@3.7.1
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: gh-pages

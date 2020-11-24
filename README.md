@@ -41,90 +41,57 @@ Generated Data:
 # Setup and Usage
 
 Using this instance as a starting point, you can update the config to include
-just the plugins you want, pointing at the data you care about. We recommend setting up
+the plugins you want, pointing at the data you care about. We recommend setting up
 your instance locally first and make sure its working before pushing your changes
 to master and using the Github Action.
 
-Get [Yarn] and then run `yarn` to install SourceCred and dependencies.
+1. Get [Yarn] and then run `yarn` to install SourceCred and dependencies.
 
-Update the configuration files according to the plugin guides below.
+2. Enable the plugins you want to use by updating the `sourcecred.json` file. e.g. 
+to enable all the plugins:
+```json
+{
+  "bundledPlugins": ["sourcecred/discourse", "sourcecred/discord", "sourcecred/github"]
+}
+```
 
-Then, run the following commands to update the instance:
+3. If you are using the GitHub or Discord plugin, copy the `.env.example` file to a `.env` file:
+```shell script
+cp .env.example .env
+```
 
-- `yarn load [...plugins]` loads the cache. By default, it loads all
-  plugins, or it can load only specific plugins if requested.
-- `yarn graph` regenerates plugin graphs from the cache;
-  these graphs get saved in `output/`.
-- `yarn score` computes Cred scores, combining data from all the chosen
-  plugins
-- `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`
-
-**Generate the frontend:**
-
-- `yarn site`
-
-**Run the frontend:**
-
-- `yarn serve`
+4. Follow the steps in the [plugin guides below](#supported-plugins) to setup the config files and generate access tokens
+for each plugin and then paste them into the `.env` file after the `=` sign.
 
 
-If you want to clear the cached data, you can do so via:
+5. Use the following commands to run your instance locally:
 
-- `yarn clean` 
+**Load Data**
 
-Running `yarn clean` is a good idea if any plugins fail to load.
+- `yarn load` loads the data from each plugin into the cache. Run this anytime you want to re-load the data from 
+your plugins.
+
+**Run SourceCred**
+- `yarn start` creates the cred graph, computes cred scores and runs the front end interface which you can access at `localhost:6006`
+in your browser.
+
+NOTE: this command will not load any new data from Discord / GitHub / Discourse, etc. If you want to re-load
+all the latest user activity, run `yarn load` again.
+
+**Clear Cache**
+
+
+- `yarn clean` will clear any cached data that was loaded by the plugins. You can run this if any plugins fail to load. Run `yarn load` after this to re-load the data.
 
 If you want to restart from a clean slate and remove all the generated graphs, you can do so via:
-
 - `yarn clean-all` 
 
-Run `yarn clean-all` if the `yarn graph` command fails due to a change in the config or breaking changes in a new version of SourceCred.
-**Warning**: If you don't have credentials for every plugin, you might not be able to regenerate parts of the graph.
-
-### Publishing on GitHub pages
-
-Once you've got the instance configured to your satisfaction (see instructions on plugins below),
-commit and push your changes to master (or make a pull request). The Github Action will then generate the frontend
-and deploy it to GitHub Pages. To enable GitHub Pages for your instance, check out [this guide](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
-Make sure you select `gh-pages` as the branch to publish from.
-
-
-
-# Supported Plugins
-
-## GitHub
-
-The GitHub plugin loads GitHub repositories.
-
-You can specify the repositories to load in
-`config/plugins/sourcecred/github/config.json`.
-
-The Github Action automatically has its own GITHUB_TOKEN, but if you need to load data from the 
-GitHub plugin locally, you must have a GitHub API key in your environment as
-`$SOURCECRED_GITHUB_TOKEN`. The key should be read-only without any special
-permissions (unless you are loading a private GitHub repository, in which case
-the key needs access to your private repositories).
-
-You can generate a GitHub API key [here](https://github.com/settings/tokens).
-
-## Discourse
-
-The Discourse plugin loads Discourse forums; currently, only one forum can be loaded in any single instance. This does not require any special API
-keys or permissions. You just need to set the server url in `config/plugins/sourcecred/discourse/config.json`.
-
-## Discord
-
-The Discord plugin loads Discord servers, and mints Cred on Discord reactions.
-For instructions on configuring the Discord plugin, see the [Discord plugin page](https://sourcecred.io/docs/beta/plugins/discord/#configuration) in the SourceCred documentation. 
-
-# Removing plugins
-
-To deactivate a plugin, just remove it from the `bundledPlugins` array in the `sourcecred.json` file.
-You can also remove its `config/plugins/OWNER/NAME` directory for good measure.
+Run `yarn clean-all` if the `yarn start` command fails due to a change in the config or breaking changes in a new version of SourceCred.
 
 ### Distributing Grain
+- `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`. 
 
-This repo contains a GitHub action for distributing grain. It will run every Sunday and create a Pull Request
+This repo also contains a GitHub action for automatically distributing grain. It will run every Sunday and create a Pull Request
 with the ledger updated with the new grain balances based on the users cred scores. The amount of grain to get distributed
 every week can be defined in the `config/grain.json` file. There are two different policies that can be used to control
 how the grain gets distributed: 
@@ -140,5 +107,54 @@ In SourceCred, we distribute 15000 grain / week with the "balanced" policy and 5
 policy. The values you use for your community depend on whether you want to optimize for more immediate short term
 action, or for long term incentive alignment, but we recommend using a blend of both.
 
-[Yarn]: https://classic.yarnpkg.com/
+### Low-level CLI
+If you want to go deeper, you can access lower-level commands in the sourcecred CLI in the form of: `yarn sourcecred <command>`. 
+For a list of what's available, and what each command does, run `yarn sourcecred help`.
 
+### Publishing on GitHub pages
+
+Once you've got the instance configured to your satisfaction (see instructions on plugins below),
+commit and push your changes to master (or make a pull request). The Github Action will then generate the frontend
+and deploy it to GitHub Pages. To enable GitHub Pages for your instance, check out [this guide](https://docs.github.com/en/github/working-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site).
+Make sure you select `gh-pages` as the branch to publish from.
+
+# Supported Plugins
+
+## GitHub
+
+The GitHub plugin loads GitHub repositories.
+
+You can specify the repositories to load in
+`config/plugins/sourcecred/github/config.json`.
+
+The Github Action automatically has its own GITHUB_TOKEN, but if you need to load data from the 
+GitHub plugin locally, you must have a GitHub API key in your `.env` file as
+`SOURCECRED_GITHUB_TOKEN=<token>` (copy the `.env.example` file for reference). The key should be read-only without any special
+scopes or permissions (unless you are loading a private GitHub repository, in which case
+the key needs access to your private repositories).
+
+You can generate a GitHub API key [here](https://github.com/settings/tokens).
+
+## Discourse
+
+The Discourse plugin loads Discourse forums; currently, only one forum can be loaded in any single instance. This does not require any special API
+keys or permissions. You just need to set the server url in `config/plugins/sourcecred/discourse/config.json`.
+
+## Discord
+
+The Discord plugin loads Discord servers, and mints Cred on Discord reactions. In order for SourceCred to
+access your Discord server, you need to generate a "bot token" and paste it in the `.env` file as
+`SOURCECRED_DISCORD_TOKEN=<token>` (copy the `.env.example` file for reference). You will also need to add it
+to your GitHub Action secrets. 
+
+The full instructions for setting up the Discord plugin can be found in the [Discord plugin page](https://sourcecred.io/docs/beta/plugins/discord/#configuration)
+ in the SourceCred documentation. 
+
+# Removing plugins
+
+To deactivate a plugin, just remove it from the `bundledPlugins` array in the `sourcecred.json` file.
+You can also remove its `config/plugins/OWNER/NAME` directory for good measure.
+
+
+
+[Yarn]: https://classic.yarnpkg.com/

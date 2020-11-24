@@ -7,19 +7,17 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "sourcecred": "0.7.0-beta-16"
+    "sourcecred": "^0.7.3"
   },
   "scripts": {
     "clean": "rimraf cache site",
     "clean-all": "yarn clean && rimraf output",
-    "load": "sourcecred load",
-    "graph": "sourcecred graph",
-    "score": "sourcecred score",
-    "site": "sourcecred site",
-    "serve": "sourcecred serve",
+    "load": "dotenv sourcecred load",
+    "start": "dotenv sourcecred go --no-load && sourcecred serve",
     "grain": "sourcecred grain"
   },
   "devDependencies": {
-    "rimraf": "^3.0.2"
+    "rimraf": "^3.0.2",
+    "dotenv-cli": "^4.0.0"
   }
 }

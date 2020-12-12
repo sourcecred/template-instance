@@ -1869,6 +1869,11 @@ lodash.debounce@^4.0.8:
   resolved "https://registry.yarnpkg.com/lodash.debounce/-/lodash.debounce-4.0.8.tgz#82d79bff30a67c4005ffd5e2515300ad9ca4d7af"
   integrity sha1-gteb/zCmfEAF/9XiUVMArZyk168=
 
+lodash.differenceby@^4.8.0:
+  version "4.8.0"
+  resolved "https://registry.yarnpkg.com/lodash.differenceby/-/lodash.differenceby-4.8.0.tgz#cfd59e94353af5de51da5d302ca4ebff33faac57"
+  integrity sha1-z9WelDU69d5R2l0wLKTr/zP6rFc=
+
 lodash.isequal@^4.5.0:
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/lodash.isequal/-/lodash.isequal-4.5.0.tgz#415c4478f2bcc30120c22ce10ed3226f7d3e18e0"
@@ -2922,10 +2927,10 @@ source-map@^0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sourcecred@^0.7.3:
-  version "0.7.3"
-  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.7.3.tgz#5fd6014e25c997dd8caa95bd183c2b296b9970cf"
-  integrity sha512-pIov1JJM6pJjQxODebFCi33eRNPrBsrR6IHAl7f5WmRFdUD/SW3gEBRpE3p7obpMHp+ESMguNIXF0bQ2Y7eqAg==
+sourcecred@^0.7.4:
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.7.4.tgz#7c86b96c771019715e44129b8bdea7c25f1c86d8"
+  integrity sha512-7ZoWxUBDwvQnI070Is4yqYsixNNPgovQdbhhFP+7SSzrMG/bhNT0MPeKJZaPrgvDGJoR2iZZOFQjfZ+YQOAdsQ==
   dependencies:
     "@material-ui/lab" "^4.0.0-alpha.56"
     aphrodite "^2.4.0"
@@ -2952,6 +2957,7 @@ sourcecred@^0.7.3:
     isomorphic-fetch "^3.0.0"
     json-stable-stringify "^1.0.1"
     lodash.clonedeep "^4.5.0"
+    lodash.differenceby "^4.8.0"
     lodash.isequal "^4.5.0"
     lodash.sortby "^4.7.0"
     lodash.sortedindex "^4.1.0"

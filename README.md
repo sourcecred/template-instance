@@ -91,16 +91,34 @@ Run `yarn clean-all` if the `yarn start` command fails due to a change in the co
 - `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`. 
 
 This repo also contains a GitHub action for automatically distributing grain. It will run every Sunday and create a Pull Request
-with the ledger updated with the new grain balances based on the users cred scores. The amount of grain to get distributed
-every week can be defined in the `config/grain.json` file. There are two different policies that can be used to control
-how the grain gets distributed: 
-- `immediatePerWeek` splits the grain evenly based on everyone's Cred in the last week only.
-- `balancedPerWeek` distributes the grain consistently based on total lifetime cred scores. i.e. it balances
-the distribution of grain with the distribution of total historical cred.
+with the ledger updated with the new grain balances based on the users Cred scores. The amount of grain to get distributed
+every week can be defined in the `config/grain.json` file. 
 
-The balanced policy allows SourceCred to reward people retro-actively. e.g. If someone has been historically "overpaid"
-with grain relative to their cred scores, that people will receive less grain in the balanced distribution while people
-who have been "underpaid" relative to their cred will receive more grain.
+There are three different policies that can be used to control
+how the grain gets distributed: 
+
+- `immediatePerWeek` splits the grain evenly based on everyone's Cred in the last week only.
+- `balancedPerWeek` distributes the grain consistently based on total lifetime Cred scores. i.e. it balances
+the distribution of grain with the distribution of total historical Cred.
+- `recentPerWeek` distributes the grain based on an exponential decay, such that more recent contributions receive more grain than older contributions.
+
+You can choose to distribute grain using any one of these policies, or a weighted combination of all three. Simply specify the amount of grain to be distributed by each policy. For instance, in the example below, we tell SourceCred to distribute 1,000 grain every week, with 25% (250 grain) distributed according to `immediatePerWeek`, 25% (250 grain) distributed according to `balancedPerWeek`, and 75% (750 grain) distributed according to `recentPerWeek`. 
+
+```
+{
+ "immediatePerWeek": 250,
+ "balancedPerWeek": 250,
+ "recentPerWeek": 750,
+ "recentWeeklyDecayRate": 0.5,
+ "maxSimultaneousDistributions": 100
+}
+```
+
+The `balancedPerWeek` policy allows SourceCred to reward people retro-actively. For example, If someone has been historically "overpaid"
+with grain relative to their Cred scores, that person will receive less grain in the balanced distribution while people
+who have been "underpaid" relative to their Cred will receive more grain.
+
+The `recentPerWeek` policy weights contributions with an exponential decay. The `recentWeeklyDecayRate` parameter determines the exponential rate of decay. The weighting for each week is equal to (1 - `recentWeeklyDecayRate`) raised to the power of the week number. For example, if `recentWeeklyDecayRate` is set to 1, this policy is equivalent to the `immediatePerWeek` policy; 100% of grain is distributed based on Cred generated in the last week and Cred created in prior weeks is "discounted" to 0%. If `recentWeeklyDecayRate` is set to 0.5 (i.e. 50% discount), as in the above example, the policy will count 100% of the Cred generated in the last week, 50% of the Cred generated in the week before, 25% from the week before that, 12.5% from the week before that, and so on. In other words, `recentPerWeek` is a lot more flexible in how it rewards the most recent contributions without making it a hard 1-week cut-off.
 
 In SourceCred, we distribute 15000 grain / week with the "balanced" policy and 5000 grain / week with the "immediate"
 policy. The values you use for your community depend on whether you want to optimize for more immediate short term

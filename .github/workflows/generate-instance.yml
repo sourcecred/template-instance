@@ -5,6 +5,7 @@ on:
     branches:
       - master
   # As well as every 24 hours (at 0:00 UTC).
+  workflow_dispatch:
   schedule:
     - cron: 0 0 * * *
 

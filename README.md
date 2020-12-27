@@ -157,3 +157,22 @@ You can also remove its `config/plugins/OWNER/NAME` directory for good measure.
 
 
 [Yarn]: https://classic.yarnpkg.com/
+
+
+netstat -tulpn | grep :6006
+
+
+start node on background with 
+
+
+pm2 start /usr/share/yarn/bin/yarn.js  --name sourcecred -- start
+
+Run docker image
+docker run -p6006:6006 me/sourcecred
+
+
+Delete all exited containers
+sudo docker ps -a | grep Exit | cut -d ' ' -f 1 | xargs sudo docker rm
+
+docker build -t me/sourcecred .
+

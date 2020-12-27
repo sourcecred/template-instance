@@ -25,7 +25,7 @@ jobs:
       - name: Load Data into Graph 🔌
         run: |
           yarn load
-          yarn graph
+          yarn grain
         env:
           SOURCECRED_GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SOURCECRED_DISCORD_TOKEN: ${{ secrets.SOURCECRED_DISCORD_TOKEN }}

@@ -2,6 +2,7 @@ name: Distribute Grain
 on:
   # A new Cred interval every Sunday. We'll distribute Grain 5 minutes
   # after the new interval
+  workflow_dispatch:
   schedule:
     - cron: 5 0 * * 0 # 00:05 UTC, 16:05 PST
   push:

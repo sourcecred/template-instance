@@ -35,7 +35,7 @@ jobs:
         run: |
           yarn sourcecred site
           rm -rf ./site/{output,data,config,sourcecred.json}
-          cp -r ./{output,data,config,sourcecred.json} ./site/
+          cp -r ./{output,data,config,sourcecred.json,package.json} ./site/
 
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@3.7.1

@@ -368,6 +368,19 @@ autosuggest-highlight@^3.1.1:
   dependencies:
     diacritic "0.0.2"
 
+babel-plugin-syntax-flow@^6.18.0:
+  version "6.18.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-syntax-flow/-/babel-plugin-syntax-flow-6.18.0.tgz#4c3ab20a2af26aa20cd25995c398c4eb70310c8d"
+  integrity sha1-TDqyCiryaqIM0lmVw5jE63AxDI0=
+
+babel-plugin-transform-flow-strip-types@^6.22.0:
+  version "6.22.0"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-flow-strip-types/-/babel-plugin-transform-flow-strip-types-6.22.0.tgz#84cb672935d43714fdc32bce84568d87441cf7cf"
+  integrity sha1-hMtnKTXUNxT9wyvOhFaNh0Qc988=
+  dependencies:
+    babel-plugin-syntax-flow "^6.18.0"
+    babel-runtime "^6.22.0"
+
 babel-runtime@^6.22.0:
   version "6.26.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.26.0.tgz#965c7058668e82b55d7bfe04ff2337bc8b5647fe"
@@ -655,6 +668,13 @@ core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+
+cross-fetch@^3.0.6:
+  version "3.0.6"
+  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.0.6.tgz#3a4040bc8941e653e0e9cf17f29ebcd177d3365c"
+  integrity sha512-KBPUbqgFjzWlVcURG+Svp9TlhA5uliYtiNx/0r8nv0pdypeQCRJ9IaSIc3q/x3q8t3F75cHuwxVql1HFGHCNJQ==
+  dependencies:
+    node-fetch "2.6.1"
 
 cross-spawn@^7.0.1:
   version "7.0.3"
@@ -2018,6 +2038,11 @@ node-abi@^2.7.0:
   dependencies:
     semver "^5.4.1"
 
+node-fetch@2.6.1, node-fetch@^2.6.1:
+  version "2.6.1"
+  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
+  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
+
 node-fetch@^1.0.1:
   version "1.7.3"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-1.7.3.tgz#980f6f72d85211a5347c6b2bc18c5b84c3eb47ef"
@@ -2025,11 +2050,6 @@ node-fetch@^1.0.1:
   dependencies:
     encoding "^0.1.11"
     is-stream "^1.0.1"
-
-node-fetch@^2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
-  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-polyglot@^2.2.2:
   version "2.4.0"
@@ -2772,13 +2792,14 @@ source-map@^0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sourcecred@^0.7.6:
-  version "0.7.6"
-  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.7.6.tgz#9d2e90ceb73aecf788ed5d70221d56f785c76cae"
-  integrity sha512-flW4xol9T6tZhdzumwqW8WujVbKwQn5vX3/n0zIFj9NuJe55utRxrOjW4YJrVstx6jCYN2GCdn8qrGCLl9AzJg==
+sourcecred@^0.7.7:
+  version "0.7.7"
+  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.7.7.tgz#f7ea11cf823bef031fb24a905133d5aa75430b9e"
+  integrity sha512-p6eZuR6vjBpE1Fj15cXW8Z6oMgCxJa7H/THnkgTTLbNuZ4VGx8s3O0HgodQawnHsU/eLtSC8sonpNiR6psjIgA==
   dependencies:
     "@material-ui/lab" "^4.0.0-alpha.56"
     aphrodite "^2.4.0"
+    babel-plugin-transform-flow-strip-types "^6.22.0"
     base-64 "^1.0.0"
     base64url "^3.0.1"
     better-sqlite3 "^7.0.0"
@@ -2786,6 +2807,7 @@ sourcecred@^0.7.6:
     bottleneck "^2.19.5"
     chalk "^4.0.0"
     commonmark "0.29.1"
+    cross-fetch "^3.0.6"
     d3-array "^2.4.0"
     d3-format "^2.0.0"
     d3-scale "^3.2.1"

@@ -92,20 +92,26 @@ Run `yarn clean-all` if the `yarn start` command fails due to a change in the co
 - `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`. 
 
 This repo also contains a GitHub action for automatically distributing grain. It will run every Sunday and create a Pull Request
-with the ledger updated with the new grain balances based on the users cred scores. The amount of grain to get distributed
-every week can be defined in the `config/grain.json` file. There are two different policies that can be used to control
-how the grain gets distributed: 
-- `immediatePerWeek` splits the grain evenly based on everyone's Cred in the last week only.
-- `balancedPerWeek` distributes the grain consistently based on total lifetime cred scores. i.e. it balances
-the distribution of grain with the distribution of total historical cred.
+with the ledger updated with the new grain balances based on the users Cred scores. The amount of grain to get distributed
+every week can be defined in the `config/grain.json` file. 
 
-The balanced policy allows SourceCred to reward people retro-actively. e.g. If someone has been historically "overpaid"
-with grain relative to their cred scores, that people will receive less grain in the balanced distribution while people
-who have been "underpaid" relative to their cred will receive more grain.
 
-In SourceCred, we distribute 15000 grain / week with the "balanced" policy and 5000 grain / week with the "immediate"
-policy. The values you use for your community depend on whether you want to optimize for more immediate short term
-action, or for long term incentive alignment, but we recommend using a blend of both.
+There are three different policies that can be used to control
+how the grain gets distributed: `immediatePerWeek`, `balancedPerWeek`, and `recentPerWeek`. For info on what each policy does, how to choose the right policy for your community, and how Grain operates in general, see [How Grain Works](https://sourcecred.io/docs/beta/grain). 
+
+Below is an example `grain.json` file for a configuration that uses a combination of all three policies. Here we tell SourceCred to distribute 1,000 grain every week, with 25% (250 grain) distributed according to `immediatePerWeek`, 25% (250 grain) distributed according to `balancedPerWeek`, and 75% (750 grain) distributed according to `recentPerWeek`. 
+
+```
+{
+ "immediatePerWeek": 250,
+ "balancedPerWeek": 250,
+ "recentPerWeek": 750,
+ "recentWeeklyDecayRate": 0.5,
+ "maxSimultaneousDistributions": 100
+}
+```
+
+
 
 ### Low-level CLI
 If you want to go deeper, you can access lower-level commands in the sourcecred CLI in the form of: `yarn sourcecred <command>`. 

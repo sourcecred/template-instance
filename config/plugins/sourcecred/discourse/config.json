@@ -1,1 +1,14 @@
-{"serverUrl": "https://sourcecred-test.discourse.group"}
+{
+  "serverUrl": "https://forum.makerdao.com",
+  "weights": {
+    "categoryWeights": {
+     "5": 1,
+     "36": 1
+    },
+    "defaultCategoryWeight": 1,
+    "defaultTagWeight": 1,
+    "tagWeights": {
+      "sourcecred": 1
+    }
+  }
+}

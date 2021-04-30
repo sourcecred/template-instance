@@ -2128,6 +2128,11 @@ once@^1.3.0, once@^1.3.1, once@^1.4.0:
   dependencies:
     wrappy "1"
 
+pako@^2.0.3:
+  version "2.0.3"
+  resolved "https://registry.yarnpkg.com/pako/-/pako-2.0.3.tgz#cdf475e31b678565251406de9e759196a0ea7a43"
+  integrity sha512-WjR1hOeg+kki3ZIOjaf4b5WVcay1jaliKSYiEaB1XzwhMQZJxRdQRv0V31EKBYlxb4T7SK3hjfc/jxyU64BoSw==
+
 parse-entities@^1.1.0:
   version "1.2.2"
   resolved "https://registry.yarnpkg.com/parse-entities/-/parse-entities-1.2.2.tgz#c31bf0f653b6661354f8973559cb86dd1d5edf50"
@@ -2792,10 +2797,10 @@ source-map@^0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sourcecred@^0.7.7:
-  version "0.7.7"
-  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.7.7.tgz#f7ea11cf823bef031fb24a905133d5aa75430b9e"
-  integrity sha512-p6eZuR6vjBpE1Fj15cXW8Z6oMgCxJa7H/THnkgTTLbNuZ4VGx8s3O0HgodQawnHsU/eLtSC8sonpNiR6psjIgA==
+sourcecred@^0.8.5:
+  version "0.8.5"
+  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.8.5.tgz#979dd66e286e0daac82858f8069b59deebedae1a"
+  integrity sha512-HsfDTFgyYvTkQUEfhmmhMNDrvLohKF4elLwPUFDIHF/VwbTODdl/cdEnGvTH/6YzSbXpBOsgsAV0oOq5DzgIxg==
   dependencies:
     "@material-ui/lab" "^4.0.0-alpha.56"
     aphrodite "^2.4.0"
@@ -2831,6 +2836,7 @@ sourcecred@^0.7.7:
     lodash.sortby "^4.7.0"
     lodash.sortedindex "^4.1.0"
     object-assign "^4.1.1"
+    pako "^2.0.3"
     promise "^8.1.0"
     ra-data-fakerest "^3.6.2"
     react "^16.13.0"

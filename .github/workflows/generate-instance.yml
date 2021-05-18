@@ -3,7 +3,7 @@ on:
   # Trigger on merging to master.
   push:
     branches:
-      - master
+      - main
   # As well as every 24 hours (at 0:00 UTC).
   schedule:
     - cron: 0 0 * * *

@@ -134,11 +134,12 @@ The GitHub plugin loads GitHub repositories.
 You can specify the repositories to load in
 `config/plugins/sourcecred/github/config.json`.
 
-The Github Action automatically has its own GITHUB_TOKEN, but if you need to load data from the 
-GitHub plugin locally, you must have a GitHub API key in your `.env` file as
+In order for SourceCred to access your GitHub repos, 
+you must have a GitHub API key in your `.env` file as
 `SOURCECRED_GITHUB_TOKEN=<token>` (copy the `.env.example` file for reference). The key should be read-only without any special
 scopes or permissions (unless you are loading a private GitHub repository, in which case
 the key needs access to your private repositories).
+You will also need to add it to your GitHub Action secrets.
 
 You can generate a GitHub API key [here](https://github.com/settings/tokens).
 

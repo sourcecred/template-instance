@@ -44,7 +44,9 @@ the plugins you want, pointing at the data you care about. We recommend setting 
 your instance locally first and make sure its working before pushing your changes
 to master and using the Github Action.
 
-1. Use a **git** client to clone this repo. (e.g. `git clone https://github.com/sourcecred/template-instance.git`)
+1. Fork this repo.
+
+1. Use a **git** client to clone your fork locally.
 
 1. Get [Yarn], navigate to the cloned repo directory in a terminal, and then run `yarn` to install SourceCred and dependencies.
 

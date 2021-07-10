@@ -69,6 +69,9 @@ for each plugin and then paste them into the `.env` file after the `=` sign.
 
 5. Use the following commands to run your instance locally:
 
+**Install Sourcecred executable**
+- `npm install -g sourcecred`
+
 **Load Data**
 
 - `yarn load` loads the data from each plugin into the cache. Run this anytime you want to re-load the data from 

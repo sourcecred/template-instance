@@ -44,6 +44,7 @@ jobs:
           echo "::set-output name=pr_body::$description"
           rm grain_output.txt
 
+# To create a pull request, use this block:
       - name: Create commit and PR for ledger changes
         id: pr
         uses: peter-evans/create-pull-request@v3.9.1
@@ -57,3 +58,14 @@ jobs:
           commit-message: update calculated ledger
           title: ${{ env.PULL_REQUEST_TITLE }}
           body: ${{ steps.pr_details.outputs.pr_body }}
+          
+# To commit directly to the main branch, comment the above PR step, and uncomment these steps: 
+#       - name: Commit ledger changes
+#         run: |
+#           git config user.name 'credbot'
+#           git config user.email 'credbot@users.noreply.github.com'
+#           git add data/ledger.json
+#           git add config
+#           git commit --allow-empty -m '${{ env.COMMIT_TITLE }}' -m '${{ steps.details.outputs.commit_body }}'
+#       - name: Push Ledger
+#         run: git push

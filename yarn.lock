@@ -4879,10 +4879,10 @@ source-map@^0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sourcecred@^0.9.1:
-  version "0.9.1"
-  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.9.1.tgz#9ba3b1308aa83d171ac6ade8c25800b4852f26b8"
-  integrity sha512-+2B6UklLrudSDLUxbrA5X0i0Kh7wuSUBlOwo3mIazNJUaL+5rs76Lp0WOErHrXyrf4W3EEqkwiV24l/w+dfbug==
+sourcecred@^0.9.2:
+  version "0.9.2"
+  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.9.2.tgz#8d9168edb7ddaa210d8b7a441a904a2eb13d4082"
+  integrity sha512-JDXuoH0FpfsEQU1W55siP/UqJA3ygjuDzAWkuH/TM+KwU3O2JkuX58MGyNuNFmLR3VqyUlXekb7XccLfWX2Q6Q==
   dependencies:
     "@material-ui/core" "^4.11.2"
     "@material-ui/icons" "^4.11.2"

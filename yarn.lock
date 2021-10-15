@@ -4934,10 +4934,10 @@ source-map@^0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sourcecred@^0.9.3:
-  version "0.9.3"
-  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.9.3.tgz#102177228d72be3275df2e381f61516ff1483048"
-  integrity sha512-G8sbLmDEPjrhbJ0rsyBsgnOVI8UUnTFFMGEf6rTGgdW/9grVpvNHF3ZOGitt8xv5GUOwV0jQZN1PmjshlY3+UA==
+sourcecred@^0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.10.0.tgz#910763b4727a06a708c421fe00ba50aa792c0e38"
+  integrity sha512-y4mSKV6ndDKqm/djL2nI/3h+Ky19cqP8ULZkYiXLlwvzIaXk4h2fPVCSanxgCUkvGmhew5LJa65zmYGI6HLJ8A==
   dependencies:
     "@date-io/date-fns" "1.3.11"
     "@material-ui/core" "^4.11.2"

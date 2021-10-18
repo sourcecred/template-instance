@@ -12,7 +12,7 @@ jobs:
   GenerateCredInstance:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v2.3.5
         with:
           persist-credentials: false # Required to make github pages deployment work correctly
 

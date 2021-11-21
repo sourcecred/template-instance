@@ -107,9 +107,11 @@ with the ledger updated with the new grain balances based on the users Cred scor
 every week can be defined in the `config/grain.json` file.
 
 There are three different policies that can be used to control
-how the grain gets distributed: `immediatePerWeek`, `balancedPerWeek`, and `recentPerWeek`. For info on what each policy does, how to choose the right policy for your community, and how Grain operates in general, see [How Grain Works](https://sourcecred.io/docs/beta/grain).
+how the grain gets distributed: "IMMEDIATE", "BALANCED", and "RECENT". For info on what each policy does, how to choose the right policy for your community, and how Grain operates in general, see [How Grain Works](https://sourcecred.io/docs/beta/grain).
 
-Below is an example `grain.json` file for a configuration that uses a combination of all three policies. Here we tell SourceCred to distribute 1,000 grain every week, with 25% (250 grain) distributed according to `immediatePerWeek`, 25% (250 grain) distributed according to `balancedPerWeek`, and 50% (500 grain) distributed according to `recentPerWeek`.
+# Example Grain Configuration
+
+Below is an example `grain.json` file for a configuration that uses a combination of all three policies. Here we tell SourceCred to distribute 1,000 grain every week, with 25% (250 grain) distributed according to `IMMEDIATE`, 25% (250 grain) distributed according to `BALANCED`, and 50% (500 grain) distributed according to `RECENT`.
 
 ```json
 {
@@ -121,7 +123,7 @@ Below is an example `grain.json` file for a configuration that uses a combinatio
       "policyType": "IMMEDIATE"
     },
     {
-      "budget": "500",
+      "budget": "450",
       "discount": 0.5,
       "policyType": "RECENT"
     },

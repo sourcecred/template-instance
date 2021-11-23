@@ -17,7 +17,7 @@ jobs:
           persist-credentials: false # Required to make github pages deployment work correctly
 
       - name: Cache Data # Cache SourceCred Data, invalidating if any of the config changes or the SC version is updated
-        uses: actions/cache@v2.1.6
+        uses: actions/cache@v2.1.7
         with:
           path: '**/cache'
           key: SC-${{ runner.os }}-${{ hashFiles('**/config.json', '**/sourcecred.json', '**/yarn.lock') }}

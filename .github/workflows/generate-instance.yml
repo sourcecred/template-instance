@@ -1,6 +1,6 @@
 name: Generate Cred Instance
 on:
-  # Trigger on merging to master.
+  # Trigger on merging to main.
   push:
     branches:
       - main

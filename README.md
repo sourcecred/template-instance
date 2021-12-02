@@ -109,7 +109,7 @@ in the SourceCred documentation.
 Our current core algorithm is a variation of an algorithm called PageRank. This is a graph-based algorithm that requires weights to be set for the nodes and edges. We provide default weights, and if you want, you can skip this section for now. When you're ready to decide for yourself how Cred should flow through the graph, follow these instructions:
 1. Run `yarn sourcecred serve`, open `localhost:6006` in a browser, and navigate to the Weight Configuration page.
 1. Set the node and edge weights for each plugin. See [this guide](https://sourcecred.io/docs/beta/cred#choosing-weights) and the [plugin docs](https://sourcecred.io/docs/beta/plugins/github/) for help.
-3. Click "Download weights", move the downloaded file from your downloads folder to the `config/` folder in your instance, and then make sure the name is exactly `weights.json`
+1. Click "Download weights", move the downloaded file from your downloads folder to the `config/` folder in your instance, and then make sure the name is exactly `weights.json`
 
 ## Step 4: Configure Dependency Cred
 

@@ -94,7 +94,7 @@ You can generate a GitHub API key [here](https://github.com/settings/tokens).
 ### Discourse
 
 The Discourse plugin loads Discourse forums; currently, only one forum can be loaded in any single instance. This does not require any special API
-keys or permissions. You just need to set the server url in `config/plugins/sourcecred/discourse/config.json`.
+keys or permissions. You just need to set the server url in `config/plugins/sourcecred/discourse/config.json`. The discourse forum must be publicly accessible via the URL that is set, however. The forum must be accessible without a login.
 
 ### Discord
 

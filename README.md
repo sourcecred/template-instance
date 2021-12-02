@@ -146,7 +146,7 @@ If you continue to run into errors, check our [Tech Support FAQ](https://sourcec
 ## Step 6: Set Up GitHub Actions
 1. Once you get `yarn start` working, push your local changes to GitHub.
 1. _(Skip this if you are not using the Discord or GitHub plugins.)_ In GitHub, go to your repository's Settings tab and click Secrets in the left sidebar. Add the API tokens from your local .env file by clicking _New repository secret_ and adding SOURCECRED_<PLUGIN>_TOKEN as the name and the token as the value.
-3. Go to the repository's Actions tab. If the most recent Generate Cred Instance workflow has failed, click into it and click "Re-run all jobs". Wait or come back to verify that Generate Cred Instance succeeds.
+1. Go to the repository's Actions tab. If the most recent Generate Cred Instance workflow has failed, click into it and click "Re-run all jobs". Wait or come back to verify that Generate Cred Instance succeeds.
 
 ## Step 7: Publish with GitHub Pages
 The Generate Cred Instance workflow has deployed a static site to a branch called `gh-pages`.

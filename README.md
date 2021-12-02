@@ -53,7 +53,7 @@ to main and using the Github Action.
 
 1. Get [Yarn], navigate to the cloned repo directory in a terminal, and then run `yarn` to install SourceCred and dependencies.
 
-1. Enable the plugins you want to use by updating the `sourcecred.json` file. e.g.
+1. Enable the plugins you want to use by adding them to the `bundledPlugins` array in the `sourcecred.json` file. To disable a plugin, simply remove it. For example,
    to enable all the plugins:
 
 ```json
@@ -65,8 +65,6 @@ to main and using the Github Action.
   ]
 }
 ```
-- To deactivate a plugin, just remove it from the `bundledPlugins` array in the `sourcecred.json` file.
-You can also remove its `config/plugins/OWNER/NAME` directory for good measure.
 
 5. If you are using the GitHub or Discord plugin, copy the `.env.example` file to a `.env` file:
 

@@ -40,7 +40,7 @@ jobs:
           cp -r ./{output,data,config,sourcecred.json,package.json,yarn.lock} ./site/
 
       - name: Deploy 🚀
-        uses: JamesIves/github-pages-deploy-action@4.1.4
+        uses: JamesIves/github-pages-deploy-action@4.1.8
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages

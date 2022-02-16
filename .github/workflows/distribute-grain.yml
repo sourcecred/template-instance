@@ -14,6 +14,8 @@ on:
 jobs:
   distribute-grain:
     runs-on: ubuntu-latest
+    env:
+      NODE_OPTIONS: --max_old_space_size=8192
     steps:
       - uses: actions/checkout@v2.3.4
 

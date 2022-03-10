@@ -158,11 +158,11 @@ The Generate Cred Instance workflow has deployed a static site to a branch calle
 By default, rewards are called Grain by SourceCred. If you would like to re-skin the rewards to represent your community's token, edit `config/currencyDetails.json`
 
 The command `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`. This repo contains a GitHub Action for automatically distributing Grain. It will run every Sunday and create a Pull Request
-with the ledger updated with the new grain balances based on the users Cred scores. If you want to skip the Pull Request step and commit directly to the main branch, read and edit `.github/workflows/distribute-grain.yml`. The amount of grain distributed
-every week can be defined in the `config/grain.json` file.
+with the ledger updated with the new grain balances based on the users Cred scores.
 
-There are three different policies that can be used to control
+1. Configure the amounts to distribution and the distribution strategy by editing "config/grain.json". There are three different policies that can be used to control
 how the grain gets distributed: "IMMEDIATE", "BALANCED", and "RECENT". For info on what each policy does, how to choose the right policy for your community, and how Grain operates in general, see [How Grain Works](https://sourcecred.io/docs/beta/grain).
+1. **The grain distribution will not take effect until you manually approve and merge it every week in the Pull Requests tab of your instance repository. You should do this weekly, or you will encounter merge conflicts.** If you want to skip the Pull Request step and commit directly to the main branch, read the instructions in `.github/workflows/distribute-grain.yml` and make the described edit.
 
 **Example Grain Configuration**
 

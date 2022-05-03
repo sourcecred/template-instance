@@ -4965,10 +4965,10 @@ source-map@^0.6.1:
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
 
-sourcecred@^0.10.1:
-  version "0.10.1"
-  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.10.1.tgz#6b7eddafe5b48a9507343f53b4468ce40eea2d8d"
-  integrity sha512-v+lMiXAYKj+JFYEW5bES993/CJRki1TYcrvHRsYzXQS+o8UANdqwnhvtkXWF64JxQvgz0HpuXWNRsGJ0kaMYgg==
+sourcecred@^0.11.1:
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/sourcecred/-/sourcecred-0.11.1.tgz#eee2cb7278ab7fe9ccff5fe2b16325f6fa49dfa9"
+  integrity sha512-w3PAM+qNRrHkBer41/ovKxbz6QwUaeW/3ntQdNCoxGJC7bwVWMKq12+WChiddpod7duRLiJLPe5XypyIr1v6Rg==
   dependencies:
     "@aws-sdk/util-base64-browser" "^3.37.0"
     "@date-io/date-fns" "1.3.11"

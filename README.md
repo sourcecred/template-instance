@@ -103,17 +103,22 @@ access your Discord server, you need to generate a "bot token" and paste it in t
 The full instructions for setting up the Discord plugin can be found in the [Discord plugin page](https://sourcecred.io/docs/beta/plugins/discord/#configuration)
 in the SourceCred documentation.
 
-## Step 3: Configure PageRank Weights
-Our current core algorithm is a variation of an algorithm called PageRank. This is a graph-based algorithm that requires weights to be set for the nodes and edges. We provide default weights, and if you want, you can skip this section for now. When you're ready to decide for yourself how Cred should flow through the graph, follow these instructions:
+## Step 3: Configure CredRank Weights
+Our current core algorithm, CredRank, is a variation of an algorithm called PageRank. This is a graph-based algorithm that requires weights to be set for the nodes and edges. We provide default weights, and if you want, you can skip this section for now. When you're ready to decide for yourself how Cred should flow through the graph, follow these instructions:
 1. Run `yarn sourcecred serve`, open `localhost:6006` in a browser, and navigate to the Weight Configuration page.
 1. Set the node and edge weights for each plugin. See [this guide](https://sourcecred.io/docs/beta/cred#choosing-weights) and the [plugin docs](https://sourcecred.io/docs/beta/plugins/github/) for help.
 1. Click "Download weights", move the downloaded file from your downloads folder to the `config/` folder in your instance, and then make sure the name is exactly `weights.json`
+
+## Step 3 (alternative): Configure our experimental algorithm CredEquate
+For a comparison of the two available algorithms, and example configs, see: https://sourcecred.io/docs/guides/core-algorithm/
 
 ## Step 4: Configure Dependency Cred
 
 In `config/dependencies.json` you'll notice there is a default configuration for recognizing SourceCred as a dependency that powers your community. This will create bonus Cred and give it to an identity named `sourcecred`, which will be activated to receive rewards. By default it is set to 0.05 (5% of minted Cred).
 
 If you choose to keep or increase our dependency cred, rewards distributed to our community support the longevity and development of the project. If you are interested in possibly getting extra tech support or feature prioritization for higher depencency cred, reach out on [Discord](https://sourcecred.io/discord) in our _#any-questions_ channel! If you want to lower or remove the dependency cred, we're dedicated to open source and you totally can.
+
+NOTE: WE ARE NO LONGER ACCEPTING REWARDS/DONATIONS AT THIS TIME
 
 ## Step 5: Test with the CLI
 
@@ -190,6 +195,9 @@ Below is an example `grain.json` file for a configuration that uses a combinatio
   ]
 }
 ```
+
+### Optionally use our CSV Grain Integration
+Instead of doing Grain balance accounting in SourceCred, you can instead make Grain distributions output CSV files to directly send payouts to participants using Disperse.app or Gnosis Safe CSV app. To try this out, see: https://sourcecred.io/docs/guides/csv-grain/
 
 ## That's it!
 You've set up a SourceCred instance! We'd love to know you're out there. _**Introduce yourself and link your repository**_ on our [Discord](https://sourcecred.io/discord) or @ us on [Twitter](https://twitter.com/sourcecred).

@@ -41,6 +41,7 @@ your instance locally first and make sure its working before pushing your change
 to main and using the Github Action.
 
 **Setting up a SourceCred Instance requires basic knowledge of:**
+
 - using a terminal
 - using git
 - hand-editing JSON files
@@ -104,12 +105,15 @@ The full instructions for setting up the Discord plugin can be found in the [Dis
 in the SourceCred documentation.
 
 ## Step 3: Configure CredRank Weights
+
 Our current core algorithm, CredRank, is a variation of an algorithm called PageRank. This is a graph-based algorithm that requires weights to be set for the nodes and edges. We provide default weights, and if you want, you can skip this section for now. When you're ready to decide for yourself how Cred should flow through the graph, follow these instructions:
+
 1. Run `yarn sourcecred serve`, open `localhost:6006` in a browser, and navigate to the Weight Configuration page.
 1. Set the node and edge weights for each plugin. See [this guide](https://sourcecred.io/docs/beta/cred#choosing-weights) and the [plugin docs](https://sourcecred.io/docs/beta/plugins/github/) for help.
 1. Click "Download weights", move the downloaded file from your downloads folder to the `config/` folder in your instance, and then make sure the name is exactly `weights.json`
 
 ## Step 3 (alternative): Configure our experimental algorithm CredEquate
+
 For a comparison of the two available algorithms, and example configs, see: https://sourcecred.io/docs/guides/core-algorithm/
 
 ## Step 4: Configure Dependency Cred
@@ -137,7 +141,6 @@ Use the following commands to run your instance locally:
 NOTE: this command will not load any new data from Discord / GitHub / Discourse, etc. If you want to re-load
 all the latest user activity, run `yarn load` again.
 
-
 **Troubleshooting**
 
 - `yarn clean` will clear any cached data that was loaded by the plugins. You can run this if any plugins fail to load. Run `yarn load` and `yarn start` after this to refresh the data.
@@ -147,26 +150,29 @@ all the latest user activity, run `yarn load` again.
 If you continue to run into errors, check our [Tech Support FAQ](https://sourcecred.io/docs/setup/FAQ). If you don't see your error there, or you need more help, hop into our [Discord](https://sourcecred.io/discord) and ask in the #tech-support channel.
 
 ## Step 6: Set Up GitHub Actions
+
 1. Once you get `yarn start` working, push your local changes to GitHub.
 1. _(Skip this if you are not using the Discord or GitHub plugins.)_ In GitHub, go to your repository's Settings tab and click Secrets in the left sidebar. Add the API tokens from your local .env file by clicking _New repository secret_ and adding `SOURCECRED_<PLUGIN>_TOKEN` as the name and the token as the value.
 1. Go to the repository's Actions tab. If the most recent Generate Cred Instance workflow has failed, click into it and click "Re-run all jobs". Wait or come back to verify that Generate Cred Instance succeeds.
 
 ## Step 7: Publish with GitHub Pages
+
 The Generate Cred Instance workflow has deployed a static site to a branch called `gh-pages`.
+
 1. Go to Settings > Pages
 1. Select the gh-pages branch if it is not already selected.
 1. Click "Select theme" and then click the green "Select Theme" to choose a random theme. This is required but it does not matter what theme is chosen.
 1. Verify that the URL it gives you works.
 
-
 ## Step 8: Distribute Rewards
+
 By default, rewards are called Grain by SourceCred. If you would like to re-skin the rewards to represent your community's token, edit `config/currencyDetails.json`
 
 The command `yarn grain` distributes Grain according to the current Cred scores, and the config in `config/grain.json`. This repo contains a GitHub Action for automatically distributing Grain. It will run every Sunday and create a Pull Request
 with the ledger updated with the new grain balances based on the users Cred scores.
 
 1. Configure the amounts to distribution and the distribution strategy by editing "config/grain.json". There are three different policies that can be used to control
-how the grain gets distributed: "IMMEDIATE", "BALANCED", and "RECENT". For info on what each policy does, how to choose the right policy for your community, and how Grain operates in general, see [How Grain Works](https://sourcecred.io/docs/beta/grain).
+   how the grain gets distributed: "IMMEDIATE", "BALANCED", and "RECENT". For info on what each policy does, how to choose the right policy for your community, and how Grain operates in general, see [How Grain Works](https://sourcecred.io/docs/beta/grain).
 1. **The grain distribution will not take effect until you manually approve and merge it every week in the Pull Requests tab of your instance repository. You should do this weekly, or you will encounter merge conflicts.** If you want to skip the Pull Request step and commit directly to the main branch, read the instructions in `.github/workflows/distribute-grain.yml` and make the described edit.
 
 **Example Grain Configuration**
@@ -175,8 +181,8 @@ Below is an example `grain.json` file for a configuration that uses a combinatio
 
 ```json
 {
- "maxSimultaneousDistributions": 1
- "allocationPolicies": [
+  "maxSimultaneousDistributions": 1,
+  "allocationPolicies": [
     {
       "budget": "250",
       "numIntervalsLookback": 1,
@@ -197,15 +203,16 @@ Below is an example `grain.json` file for a configuration that uses a combinatio
 ```
 
 ### Optionally use our CSV Grain Integration
+
 Instead of doing Grain balance accounting in SourceCred, you can instead make Grain distributions output CSV files to directly send payouts to participants using Disperse.app or Gnosis Safe CSV app. To try this out, see: https://sourcecred.io/docs/guides/csv-grain/
 
 ## That's it!
+
 You've set up a SourceCred instance! We'd love to know you're out there. _**Introduce yourself and link your repository**_ on our [Discord](https://sourcecred.io/discord) or @ us on [Twitter](https://twitter.com/sourcecred).
 
 # Beyond the basics
 
 If you want to go deeper, you can access lower-level commands in the SourceCred CLI in the form of: `yarn sourcecred <command>`.
 For a list of what's available, and what each command does, run `yarn sourcecred help`. Then run `yarn sourcecred help <command name>` to see what feature flags are available for each command.
-
 
 [yarn]: https://classic.yarnpkg.com/

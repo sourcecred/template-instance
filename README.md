@@ -37,7 +37,7 @@ Generated Data:
 
 Using this instance as a starting point, you can update the config to include
 the plugins you want, pointing at the data you care about. We recommend setting up
-your instance locally first and make sure its working before pushing your changes
+your instance locally first and make sure it's working before pushing your changes
 to main and using the Github Action.
 
 **Setting up a SourceCred Instance requires basic knowledge of:**
@@ -120,7 +120,7 @@ For a comparison of the two available algorithms, and example configs, see: http
 
 In `config/dependencies.json` you'll notice there is a default configuration for recognizing SourceCred as a dependency that powers your community. This will create bonus Cred and give it to an identity named `sourcecred`, which will be activated to receive rewards. By default it is set to 0.05 (5% of minted Cred).
 
-If you choose to keep or increase our dependency cred, rewards distributed to our community support the longevity and development of the project. If you are interested in possibly getting extra tech support or feature prioritization for higher depencency cred, reach out on [Discord](https://sourcecred.io/discord) in our _#any-questions_ channel! If you want to lower or remove the dependency cred, we're dedicated to open source and you totally can.
+If you choose to keep or increase our dependency cred, rewards distributed to our community support the longevity and development of the project. If you are interested in possibly getting extra tech support or feature prioritization for higher dependency cred, reach out on [Discord](https://sourcecred.io/discord) in our _#any-questions_ channel! If you want to lower or remove the dependency cred, we're dedicated to open source and you totally can.
 
 NOTE: WE ARE NO LONGER ACCEPTING REWARDS/DONATIONS AT THIS TIME
 
@@ -145,7 +145,7 @@ all the latest user activity, run `yarn load` again.
 
 - `yarn clean` will clear any cached data that was loaded by the plugins. You can run this if any plugins fail to load. Run `yarn load` and `yarn start` after this to refresh the data.
 
-- `yarn clean-all` gives you and even cleaner state. Run it if the `yarn start` command fails due to a change in the config or breaking changes in a new version of SourceCred, and then run `yarn load` and `yarn start` to refresh.
+- `yarn clean-all` gives you an even cleaner state. Run it if the `yarn start` command fails due to a change in the config or breaking changes in a new version of SourceCred, and then run `yarn load` and `yarn start` to refresh.
 
 If you continue to run into errors, check our [Tech Support FAQ](https://sourcecred.io/docs/setup/FAQ). If you don't see your error there, or you need more help, hop into our [Discord](https://sourcecred.io/discord) and ask in the #tech-support channel.
 

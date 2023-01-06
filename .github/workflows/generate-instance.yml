@@ -14,7 +14,7 @@ jobs:
     env:
       NODE_OPTIONS: --max_old_space_size=8192
     steps:
-      - uses: actions/checkout@v2.3.4
+      - uses: actions/checkout@v3.3.0
         with:
           persist-credentials: false # Required to make github pages deployment work correctly
 
